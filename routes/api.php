@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\StaffNextOfKinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
@@ -46,7 +47,14 @@ Route::delete('/staff/{id}', [StaffController::class, 'delete']);
 Route::get('/staff/{name}', [StaffController::class, 'search']);
 Route::get('/staff/getClass/{id}', [StaffController::class, 'getStaffAndClassById']);
 Route::put('/staff/updateClass/{id}', [StaffController::class, 'updateClassAssignToStaff']);
-Route::delete('/staff/deleteClass/{id}', [StaffController::class, 'deleteClassAssignToStaff']);
+Route::delete('/staff/deleteClass/{id}', [StaffController::class, 'deleteClassAssignToStaff']);\
+
+
+Route::get('/staffNextOfKin', [StaffNextOfKinController::class, 'index']);
+Route::post('/staffNextOfKin', [StaffNextOfKinController::class, 'create']);
+Route::get('/staffNextOfKin/{id}', [StaffNextOfKinController::class, 'getById']);
+Route::put('/staffNextOfKin/{id}', [StaffNextOfKinController::class, 'update']);
+Route::delete('/staffNextOfKin/{id}', [StaffNextOfKinController::class, 'delete']);
 
 
 Route::get('/parent', [ParentController::class, 'index']);

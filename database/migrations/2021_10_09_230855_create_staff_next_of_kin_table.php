@@ -21,7 +21,7 @@ class CreateStaffNextOfKinTable extends Migration
             $table->string('gender');
             $table->string('email');
             $table->string('phoneNumber1');
-            $table->string('phoneNumber2');
+            $table->string('phoneNumber2')->nullable;
             $table->string('address');
             $table->string('relationship');
             $table->string('staffId');

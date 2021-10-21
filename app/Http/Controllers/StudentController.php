@@ -26,7 +26,7 @@ class StudentController extends Controller
         $user = auth('users')->authenticate($user_token);
         $user_id = $user->id;
         
-        $student = Student::get()->load(['classes'])->toArray();
+        $student = Student::get()->load(['classes','parent'])->toArray();
 
         try {
             return response()->json([
@@ -86,7 +86,7 @@ class StudentController extends Controller
             $this->student->nationality = $request->nationality;
             $this->student->stateOfOrigin = $request->stateOfOrigin;
             $this->student->emergencyContact = $request->emergencyContact;
-            $this->student->classAdmitted = $request->classAdmitted;
+            $this->student->classAssigned = $request->classAssigned;
             $this->student->dateOfRegistration = $request->dateOfRegistration;
             $this->student->parentId = $request->parentId;
             $this->student->classId = $request->classId;
@@ -111,9 +111,9 @@ class StudentController extends Controller
    
     public function getById($id)
     {
-        $student = $this->student->find($id)->load(['classes']);
+        $student = $this->student->find($id)->load(['classes','parent']);
 
-        if(is_null($parent)){
+        if(is_null($student)){
             return response()->json([
                 'success'=>false,
                 'message'=> "Student doesn't exist"
