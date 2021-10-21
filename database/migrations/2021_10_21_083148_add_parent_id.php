@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Book extends Migration
+class AddParentId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class Book extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('books', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('authorName');
-            $table->timestamp('publishedDate');
-            $table->timestamps();
+        Schema::table('students', function($table) {
+            $table->uuid('parentId');
+            $table->uuid('classId');
         });
     }
 
@@ -30,6 +26,9 @@ class Book extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::table('students', function($table) {
+            $table->dropColumn('parentId');
+            $table->dropColumn('classId');
+        });
     }
 }

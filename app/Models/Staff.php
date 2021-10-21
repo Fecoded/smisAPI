@@ -31,5 +31,10 @@ class Staff extends Model
         return $this->hasOne(StaffNextOfKin::class, 'staffId');
     }
 
+    public function classes() 
+    {
+        return $this->belongsToMany(Classes::class, 'classes_staff', 'staffId', 'classId');
+    }
+
 
 }

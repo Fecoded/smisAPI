@@ -33,7 +33,13 @@ class Student extends Model
     
     public function parent()
     {
-        return $this->belongsTo(Parent::class, 'parentId');
+        return $this->belongsTo(Parents::class, 'parentId');
     }
+
+    public function classes() 
+    {
+        return $this->belongsTo(Classes::class, 'classId');
+    }
+
 
 }

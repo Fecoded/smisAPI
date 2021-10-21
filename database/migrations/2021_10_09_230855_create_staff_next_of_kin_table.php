@@ -14,7 +14,17 @@ class CreateStaffNextOfKinTable extends Migration
     public function up()
     {
         Schema::create('staff_next_of_kin', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('surname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->string('gender');
+            $table->string('email');
+            $table->string('phoneNumber1');
+            $table->string('phoneNumber2');
+            $table->string('address');
+            $table->string('relationship');
+            $table->string('staffId');
             $table->timestamps();
         });
     }

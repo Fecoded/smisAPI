@@ -14,7 +14,19 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('surname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->string('gender');
+            $table->string('dob');
+            $table->string('houseAddress');
+            $table->string('placeOfBirth');
+            $table->string('religion');
+            $table->string('nationality');
+            $table->string('stateOfOrigin');
+            $table->string('dateOfEmployment');
+            $table->string('dateOfRegistration');
             $table->timestamps();
         });
     }

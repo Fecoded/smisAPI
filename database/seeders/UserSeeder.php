@@ -18,8 +18,7 @@ class UserSeeder extends Seeder
     {
           DB::table('users')->insert(array(array(
             'id' => 'f3aa4117-849b-4310-b921-234aa33d9814',
-            'firstname' => 'John',
-            'lastname' => 'Doe',
+            'name' => 'John Doe',
             'email' => 'johndoe@gmail.com',
             // 'password' => Hash::make('password'),
             'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
@@ -28,8 +27,7 @@ class UserSeeder extends Seeder
             'updated_at' => new DateTime(),
           ), array(
             'id' => '48e969c7-3b5e-4d7f-9c27-808dfd9abb74',
-            'firstname' => 'Sam',
-            'lastname' => 'Smith',
+            'name' => 'Sam Smith',
             'email' => 'samsmith@gmail.com',
             // 'password' => Hash::make('password'),
             'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
@@ -38,8 +36,7 @@ class UserSeeder extends Seeder
             'updated_at' => new DateTime(),
           ), array(
             'id' => '83b5c393-bcad-4132-b067-bbb01ef74a97',
-            'firstname' => 'Toju',
-            'lastname' => 'Nathaniel',
+            'name' => 'Toju Nathaniel',
             'email' => 'tojuofe@gmail.com',
             // 'password' => Hash::make('password'),
             'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
