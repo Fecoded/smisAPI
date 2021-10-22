@@ -35,7 +35,7 @@ class StaffNextOfKinController extends Controller
         } catch (Exception $err) {
                 return response()->json([
                 'success'=>false,
-                'message'=>$err->getMessage()
+                'errors'=>$err->getMessage()
             ], 500);
         }
     }
@@ -60,7 +60,7 @@ class StaffNextOfKinController extends Controller
         {
             return response()->json([
                 'success'=>false,
-                'message'=>$validator->messages()->toArray()
+                'errors'=>$validator->errors()->all()
             ], 400);
         }
 
@@ -89,7 +89,7 @@ class StaffNextOfKinController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -101,7 +101,7 @@ class StaffNextOfKinController extends Controller
         if(is_null($staff)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Next of Kin doesn't exist"
+                'errors'=> "Next of Kin doesn't exist"
             ], 400);
         }
 
@@ -119,7 +119,7 @@ class StaffNextOfKinController extends Controller
             if(is_null($staff)){
                 return response()->json([
                     'success'=>false,
-                    'message'=> "Next of Kin doesn't exist"
+                    'errors'=> "Next of Kin doesn't exist"
                 ], 400);
             }
 
@@ -135,7 +135,7 @@ class StaffNextOfKinController extends Controller
             } catch (Exception $err) {
                 return response()->json([
                     'success'=>false,
-                    'message'=> $err->getMessage()
+                    'errors'=> $err->getMessage()
                 ], 500);
             }
     }
@@ -148,7 +148,7 @@ class StaffNextOfKinController extends Controller
         if(is_null($staff)){
             return response()->json([
                 'success'=> false,
-                'message'=> "Next of Kin doesn't exist"
+                'errors'=> "Next of Kin doesn't exist"
             ], 400);
         }
 

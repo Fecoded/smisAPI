@@ -38,7 +38,7 @@ class ParentController extends Controller
         } catch (Exception $err) {
                 return response()->json([
                 'success'=>false,
-                'message'=>$err->getMessage()
+                'errors'=>$err->getMessage()
             ], 500);
         }
     }
@@ -62,7 +62,7 @@ class ParentController extends Controller
         {
             return response()->json([
                 'success'=>false,
-                'message'=>$validator->messages()->toArray()
+                'errors'=>$validator->messages()->all()
             ], 400);
         }
 
@@ -90,7 +90,7 @@ class ParentController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -103,7 +103,7 @@ class ParentController extends Controller
         if(is_null($parent)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Parent doesn't exist"
+                'errors'=> "Parent doesn't exist"
             ], 400);
         }
 
@@ -121,7 +121,7 @@ class ParentController extends Controller
         if(is_null($parent)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Parent doesn't exist"
+                'errors'=> "Parent doesn't exist"
             ], 400);
         }
 
@@ -137,7 +137,7 @@ class ParentController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -149,7 +149,7 @@ class ParentController extends Controller
         if(is_null($parent)){
             return response()->json([
                 'success'=> false,
-                'message'=> "Parent doesn't exist"
+                'errors'=> "Parent doesn't exist"
             ], 400);
         }
 

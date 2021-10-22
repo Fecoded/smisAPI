@@ -38,7 +38,7 @@ class StudentController extends Controller
         } catch (Exception $err) {
                 return response()->json([
                 'success'=>false,
-                'message'=>$err->getMessage()
+                'errors'=>$err->getMessage()
             ], 500);
         }
     }
@@ -69,7 +69,7 @@ class StudentController extends Controller
         {
             return response()->json([
                 'success'=>false,
-                'message'=>$validator->messages()->toArray()
+                'errors'=>$validator->messages()->all()
             ], 400);
         }
 
@@ -103,7 +103,7 @@ class StudentController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -116,7 +116,7 @@ class StudentController extends Controller
         if(is_null($student)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Student doesn't exist"
+                'errors'=> "Student doesn't exist"
             ], 400);
         }
 
@@ -134,7 +134,7 @@ class StudentController extends Controller
         if(is_null($student)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Student doesn't exist"
+                'errors'=> "Student doesn't exist"
             ], 400);
         }
 
@@ -150,7 +150,7 @@ class StudentController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -162,7 +162,7 @@ class StudentController extends Controller
         if(is_null($student)){
             return response()->json([
                 'success'=> false,
-                'message'=> "Student doesn't exist"
+                'errors'=> "Student doesn't exist"
             ], 400);
         }
 

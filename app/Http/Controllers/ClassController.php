@@ -29,12 +29,11 @@ class ClassController extends Controller
                 'success'=>true,
                 'count'=>count($classes),
                 'data'=> $classes,
-                
             ], 200);
         } catch (Exception $err) {
                 return response()->json([
                 'success'=>false,
-                'message'=>$err->getMessage()
+                'errors'=>$err->getMessage()
             ], 500);
         }
     }
@@ -52,7 +51,7 @@ class ClassController extends Controller
         {
             return response()->json([
                 'success'=>false,
-                'message'=>$validator->messages()->toArray()
+                'errors'=>$validator->errors()->all()
             ], 400);
         }
 
@@ -73,7 +72,7 @@ class ClassController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -86,7 +85,7 @@ class ClassController extends Controller
         if(is_null($class)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Class doesn't exist"
+                'errors'=> "Class doesn't exist"
             ], 400);
         }
 
@@ -100,7 +99,7 @@ class ClassController extends Controller
             if(is_null($class)){
                 return response()->json([
                     'success'=>false,
-                    'message'=> "Class doesn't exist"
+                    'errors'=> "Class doesn't exist"
                 ], 400);
             }
 
@@ -116,7 +115,7 @@ class ClassController extends Controller
             } catch (Exception $err) {
                 return response()->json([
                     'success'=>false,
-                    'message'=> $err->getMessage()
+                    'errors'=> $err->getMessage()
                 ], 500);
             }
     }
@@ -130,7 +129,7 @@ class ClassController extends Controller
         if(is_null($class)){
             return response()->json([
                 'success'=> false,
-                'message'=> "Class doesn't exist"
+                'errors'=> "Class doesn't exist"
             ], 400);
         }
 
@@ -160,7 +159,7 @@ class ClassController extends Controller
         if(is_null($class)) {
             return response()->json([
                 'success'=> false,
-                'message'=> "Class doesn't exist"
+                'errors'=> "Class doesn't exist"
             ], 400);
         }
 

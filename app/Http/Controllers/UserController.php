@@ -34,7 +34,7 @@ class UserController extends Controller
         {
             return response()->json([
                 'success'=>false,
-                'message'=>$validator->messages()->toArray()
+                'errors'=>$validator->messages()->all()
             ], 400);
         }
 
@@ -43,7 +43,7 @@ class UserController extends Controller
         {
             return response()->json([
                 'success'=> false,
-                'message'=> 'Please email already exist'
+                'errors'=> 'Please email already exist'
             ], 400);
         }
 
@@ -72,7 +72,7 @@ class UserController extends Controller
         {
             return response()->json([
                 'success'=> false,
-                'message'=> $validator->messages()->toArray()
+                'errors'=> $validator->messages()->all()
             ],400);
         }
 
@@ -84,7 +84,7 @@ class UserController extends Controller
         {
             return response()->json([
                 'success'=> false,
-                'message'=> 'Invalid email or password',
+                'errors'=> 'Invalid email or password',
             ], 400);
         }
         return response()->json([
@@ -110,7 +110,7 @@ class UserController extends Controller
        } catch (Exception $err) {
             return response()->json([
             'success'=>false,
-            'error'=> $err->getMessage()
+            'errors'=> $err->getMessage()
         ], 500);
        }
     }

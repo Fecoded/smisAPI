@@ -42,7 +42,7 @@ class StaffController extends Controller
         } catch (Exception $err) {
                 return response()->json([
                 'success'=>false,
-                'message'=>$err->getMessage()
+                'errors'=>$err->getMessage()
             ], 500);
         }
     }
@@ -71,7 +71,7 @@ class StaffController extends Controller
         {
             return response()->json([
                 'success'=>false,
-                'message'=>$validator->messages()->toArray()
+                'errors'=>$validator->errors()->all()
             ], 400);
         }
 
@@ -102,7 +102,7 @@ class StaffController extends Controller
         } catch (Exception $err) {
             return response()->json([
                 'success'=>false,
-                'message'=> $err->getMessage()
+                'errors'=> $err->getMessage()
             ], 500);
         }
     }
@@ -114,7 +114,7 @@ class StaffController extends Controller
         if(is_null($staff)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Staff doesn't exist"
+                'errors'=> "Staff doesn't exist"
             ], 400);
         }
 
@@ -131,7 +131,7 @@ class StaffController extends Controller
             if(is_null($staff)){
                 return response()->json([
                     'success'=>false,
-                    'message'=> "Staff doesn't exist"
+                    'errors'=> "Staff doesn't exist"
                 ], 400);
             }
 
@@ -147,7 +147,7 @@ class StaffController extends Controller
             } catch (Exception $err) {
                 return response()->json([
                     'success'=>false,
-                    'message'=> $err->getMessage()
+                    'errors'=> $err->getMessage()
                 ], 500);
             }
     }
@@ -161,7 +161,7 @@ class StaffController extends Controller
         if(is_null($staff)){
             return response()->json([
                 'success'=> false,
-                'message'=> "Staff doesn't exist"
+                'errors'=> "Staff doesn't exist"
             ], 400);
         }
 
@@ -191,7 +191,7 @@ class StaffController extends Controller
         if(is_null($staff)) {
             return response()->json([
                 'success'=> false,
-                'message'=> "Staff doesn't exist"
+                'errors'=> "Staff doesn't exist"
             ], 400);
         }
 
@@ -211,14 +211,14 @@ class StaffController extends Controller
         if(is_null($staff)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Staff doesn't exist"
+                'errors'=> "Staff doesn't exist"
             ], 400);
         }
 
         if(is_null($class)){
             return response()->json([
                 'success'=>false,
-                'message'=> "Class doesn't exist"
+                'errors'=> "Class doesn't exist"
             ], 400);
         }
 
@@ -242,7 +242,7 @@ class StaffController extends Controller
         return response()->json([
             'success'=> true,
             'data'=> 'Class was updated'
-        ]);
+        ], 200);
     }
 
 
@@ -250,14 +250,13 @@ class StaffController extends Controller
     {
         $staff = $this->staff->find($id);
         $class = $this->class->find($request->classId);
-        $classIds = $this->class->where('id', $class->id)
-                    ->pluck('id')->toArray(); 
+        $classIds = $this->class->where('id', $class->id)->pluck('id')->toArray(); 
         
         $staff->classes()->detach($classIds);
 
         return response()->json([
-            'success'=>true,
+            'success'=> true,
             'data'=> 'Class was removed'
-        ]);
+        ], 200);
     }
 }
