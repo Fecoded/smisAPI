@@ -68,6 +68,7 @@ Route::post('/student', [StudentController::class, 'create']);
 Route::get('/student/{id}', [StudentController::class, 'getById']);
 Route::put('/student/{id}', [StudentController::class, 'update']);
 Route::delete('/student/{id}', [StudentController::class, 'delete']);
+Route::post('/student/{id}', [StudentController::class, 'promote']);
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

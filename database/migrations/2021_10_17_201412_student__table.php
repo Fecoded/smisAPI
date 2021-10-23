@@ -26,7 +26,6 @@ class StudentTable extends Migration
             $table->string('nationality');
             $table->string('stateOfOrigin');
             $table->string('emergencyContact');
-            $table->string('classAssigned');
             $table->string('dateOfRegistration');
             $table->timestamps();
         });

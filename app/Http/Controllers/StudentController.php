@@ -59,7 +59,6 @@ class StudentController extends Controller
             'nationality' => 'required|string',
             'stateOfOrigin' => 'required|string',
             'emergencyContact' => 'required|string',
-            'classAssigned' => 'required|string',
             'dateOfRegistration' => 'required|string',
             'parentId' => 'required|string',
             'classId' => 'required|string',
@@ -86,7 +85,6 @@ class StudentController extends Controller
             $this->student->nationality = $request->nationality;
             $this->student->stateOfOrigin = $request->stateOfOrigin;
             $this->student->emergencyContact = $request->emergencyContact;
-            $this->student->classAssigned = $request->classAssigned;
             $this->student->dateOfRegistration = $request->dateOfRegistration;
             $this->student->parentId = $request->parentId;
             $this->student->classId = $request->classId;
@@ -172,5 +170,34 @@ class StudentController extends Controller
             'success'=> true,
             'message'=> "Student was removed"
         ], 200);
+    }
+
+    public function promote(Request $request, $id)
+    {
+        $student = $this->student->find($id);
+
+        if(is_null($student)){
+            return response()->json([
+                'success'=>false,
+                'errors'=> "Student doesn't exist"
+            ], 400);
+        }
+
+         try {
+            $student->classId = $request->classId;
+            $student->save();
+
+            return response()->json([
+                'success'=>true,
+                'message'=> 'Promotion was Successfully',
+                'data'=> $student
+            ], 200);
+
+        } catch (Exception $err) {
+            return response()->json([
+                'success'=>false,
+                'errors'=> $err->getMessage()
+            ], 500);
+        }
     }
 }

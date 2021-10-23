@@ -44,7 +44,7 @@ class ClassController extends Controller
         
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required',
+            'name' => 'required|string',
         ]);
 
         if($validator->fails())
@@ -64,14 +64,14 @@ class ClassController extends Controller
             $class = $this->class->refresh();
 
             return response()->json([
-                'success'=>true,
+                'success'=> true,
                 'message'=> 'Class Saved Successfully',
                 'data'=> $class
             ], 201);
 
         } catch (Exception $err) {
             return response()->json([
-                'success'=>false,
+                'success'=> false,
                 'errors'=> $err->getMessage()
             ], 500);
         }
@@ -84,7 +84,7 @@ class ClassController extends Controller
 
         if(is_null($class)){
             return response()->json([
-                'success'=>false,
+                'success'=> false,
                 'errors'=> "Class doesn't exist"
             ], 400);
         }
@@ -98,7 +98,7 @@ class ClassController extends Controller
 
             if(is_null($class)){
                 return response()->json([
-                    'success'=>false,
+                    'success'=> false,
                     'errors'=> "Class doesn't exist"
                 ], 400);
             }
@@ -107,14 +107,14 @@ class ClassController extends Controller
                 $class->update($request->all());
 
                 return response()->json([
-                    'success'=>true,
+                    'success'=> true,
                     'message'=> 'Class Updated Successfully',
                     'data'=> $class
                 ], 200);
 
             } catch (Exception $err) {
                 return response()->json([
-                    'success'=>false,
+                    'success'=> false,
                     'errors'=> $err->getMessage()
                 ], 500);
             }

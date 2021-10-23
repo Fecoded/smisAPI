@@ -23,7 +23,6 @@ class Student extends Model
         'nationality',
         'stateOfOrigin',
         'emergencyContact',
-        'classAssigned',
         'dateOfRegistration'
     ];
 
