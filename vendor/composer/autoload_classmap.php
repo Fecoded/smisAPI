@@ -31,6 +31,7 @@ return array(
     'App\\Models\\ClassesStaff' => $baseDir . '/app/Models/ClassesStaff.php',
     'App\\Models\\Parents' => $baseDir . '/app/Models/Parents.php',
     'App\\Models\\Profile' => $baseDir . '/app/Models/Profile.php',
+    'App\\Models\\Session' => $baseDir . '/app/Models/Session.php',
     'App\\Models\\Staff' => $baseDir . '/app/Models/Staff.php',
     'App\\Models\\StaffNextOfKin' => $baseDir . '/app/Models/StaffNextOfKin.php',
     'App\\Models\\Student' => $baseDir . '/app/Models/Student.php',

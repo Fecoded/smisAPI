@@ -561,6 +561,7 @@ class ComposerStaticInit01116d2bbc6cbc41677be11ba60b30b2
         'App\\Models\\ClassesStaff' => __DIR__ . '/../..' . '/app/Models/ClassesStaff.php',
         'App\\Models\\Parents' => __DIR__ . '/../..' . '/app/Models/Parents.php',
         'App\\Models\\Profile' => __DIR__ . '/../..' . '/app/Models/Profile.php',
+        'App\\Models\\Session' => __DIR__ . '/../..' . '/app/Models/Session.php',
         'App\\Models\\Staff' => __DIR__ . '/../..' . '/app/Models/Staff.php',
         'App\\Models\\StaffNextOfKin' => __DIR__ . '/../..' . '/app/Models/StaffNextOfKin.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',

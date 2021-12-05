@@ -21,6 +21,7 @@ class Parents extends Model
         'phoneNumber2',
         'houseAddress',
         'workAddress',
+        'schoolName'
     ];
 
      /**
@@ -31,4 +32,13 @@ class Parents extends Model
     {
         return $this->hasMany(Student::class, 'parentId');
     }
+
+     /**
+     * Get the parent in a session.
+     */
+
+     public function session()
+     {
+         return $this->belongsTo(Session::class, 'sessionId');
+     }
 }

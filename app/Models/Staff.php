@@ -23,7 +23,8 @@ class Staff extends Model
         'nationality',
         'stateOfOrigin',
         'dateOfEmployment',
-        'dateOfRegistration'
+        'dateOfRegistration',
+        'schoolName'
     ];
 
     public function staffNextOfKin() 
@@ -31,10 +32,14 @@ class Staff extends Model
         return $this->hasOne(StaffNextOfKin::class, 'staffId');
     }
 
-    public function classes() 
+    public function session()
     {
-        return $this->belongsToMany(Classes::class, 'classes_staff', 'staffId', 'classId');
+        return $this->belongsTo(Session::class, 'sessionId');
     }
 
+    public function classes() 
+    {
+        return $this->belongsToMany(Classes::class, 'classes_staff', 'classId', 'staffId');
+    }
 
 }

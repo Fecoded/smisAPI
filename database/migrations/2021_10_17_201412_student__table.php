@@ -15,6 +15,7 @@ class StudentTable extends Migration
     {
          Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('sessionId');
             $table->string('surname');
             $table->string('firstname');
             $table->string('middlename');
@@ -27,6 +28,7 @@ class StudentTable extends Migration
             $table->string('stateOfOrigin');
             $table->string('emergencyContact');
             $table->string('dateOfRegistration');
+            $table->string('schoolName');
             $table->timestamps();
         });
     }

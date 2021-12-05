@@ -27,7 +27,8 @@ class UserController extends Controller
         [
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string',
+            'schoolName' => 'required|string'
         ]);
 
         if($validator->fails())
@@ -51,6 +52,7 @@ class UserController extends Controller
             'name'=> $request->name,
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
+            'schoolName' => $request->schoolName,
         ]);
 
         if($user)

@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             // 'password' => Hash::make('password'),
             'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
             'role' => 'super_admin',
+            'schoolName' => '',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
           ), array(
@@ -32,18 +33,10 @@ class UserSeeder extends Seeder
             // 'password' => Hash::make('password'),
             'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
             'role' => 'admin',
-             'created_at' => new DateTime(),
+            'schoolName' => 'Royalty Academics',
+            'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
-          ), array(
-            'id' => '83b5c393-bcad-4132-b067-bbb01ef74a97',
-            'name' => 'Toju Nathaniel',
-            'email' => 'tojuofe@gmail.com',
-            // 'password' => Hash::make('password'),
-            'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
-            'role' => 'user',
-             'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-          ),
+          )
           ));
     }
 }

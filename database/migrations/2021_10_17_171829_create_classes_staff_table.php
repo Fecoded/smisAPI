@@ -16,8 +16,8 @@ class CreateClassesStaffTable extends Migration
         Schema::create('classes_staff', function (Blueprint $table) {
             $table->uuid('classId');
             $table->uuid('staffId');
-            $table->foreign('classId')->reference('id')->on('classes')->onDelete('cascade');
-            $table->foreign('staffId')->reference('id')->on('staff')->onDelete('cascade');
+            $table->foreign('classId')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('staffId')->references('id')->on('staff')->onDelete('cascade');
         });
     }
 

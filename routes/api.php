@@ -7,6 +7,7 @@ use App\Http\Controllers\StaffNextOfKinController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,7 @@ Route::post('/profile', [ProfileController::class, 'create']);
 
 Route::get('/class', [ClassController::class, 'index']);
 Route::post('/class', [ClassController::class, 'create']);
-Route::get('/class/{id}', [ClassController::class, 'getById']);
+Route::get('/class/{id}', [ClassController::class, 'getClassBySchoolName']);
 Route::put('/class/{id}', [ClassController::class, 'update']);
 Route::delete('/class/{id}', [ClassController::class, 'delete']);
 Route::get('/class/{name}', [ClassController::class, 'search']);
@@ -39,12 +40,12 @@ Route::get('/class/getStaff/{id}', [ClassController::class, 'getClassAndStaffByI
 
 
 Route::get('/staff', [StaffController::class, 'index']);
+Route::get('/staff/{id}', [StaffController::class, 'getStaffBySchoolName']);
 Route::post('/staff', [StaffController::class, 'create']);
-Route::get('/staff/{id}', [StaffController::class, 'getById']);
 Route::post('/staff/assignClass/{id}', [StaffController::class, 'assignTeacherToClass']);
 Route::put('/staff/{id}', [StaffController::class, 'update']);
 Route::delete('/staff/{id}', [StaffController::class, 'delete']);
-Route::get('/staff/{name}', [StaffController::class, 'search']);
+Route::get('/staff/search/{name}', [StaffController::class, 'search']);
 Route::get('/staff/getClass/{id}', [StaffController::class, 'getStaffAndClassById']);
 Route::put('/staff/updateClass/{id}', [StaffController::class, 'updateClassAssignToStaff']);
 Route::delete('/staff/deleteClass/{id}', [StaffController::class, 'deleteClassAssignToStaff']);\
@@ -59,13 +60,19 @@ Route::delete('/staffNextOfKin/{id}', [StaffNextOfKinController::class, 'delete'
 
 Route::get('/parent', [ParentController::class, 'index']);
 Route::post('/parent', [ParentController::class, 'create']);
-Route::get('/parent/{id}', [ParentController::class, 'getById']);
+Route::get('/parent/{id}', [ParentController::class, 'getParentsBySchoolName']);
 Route::put('/parent/{id}', [ParentController::class, 'update']);
 Route::delete('/parent/{id}', [ParentController::class, 'delete']);
 
+Route::get('/session', [SessionController::class, 'index']);
+Route::post('/session', [SessionController::class, 'create']);
+Route::get('/session/{id}', [SessionController::class, 'getById']);
+Route::put('/session/{id}', [SessionController::class, 'update']);
+Route::delete('/session/{id}', [SessionController::class, 'delete']);
+
 Route::get('/student', [StudentController::class, 'index']);
 Route::post('/student', [StudentController::class, 'create']);
-Route::get('/student/{id}', [StudentController::class, 'getById']);
+Route::get('/student/{id}', [StudentController::class, 'getStudentsBySchoolName']);
 Route::put('/student/{id}', [StudentController::class, 'update']);
 Route::delete('/student/{id}', [StudentController::class, 'delete']);
 Route::post('/student/{id}', [StudentController::class, 'promote']);

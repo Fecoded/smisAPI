@@ -40,5 +40,8 @@ class Student extends Model
         return $this->belongsTo(Classes::class, 'classId');
     }
 
-
+    public function session()
+    {
+        return $this->belongsTo(Session::class, 'sessionId');
+    }
 }

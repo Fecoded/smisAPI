@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use App\Models\Classes;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class ClassController extends Controller
 
     public function index()
     {
-        $classes = $this->class->get()->load(['student'])->toArray();
+        $classes = $this->class->get()->load(['student']);
         try {
             return response()->json([
                 'success'=>true,
@@ -38,6 +39,27 @@ class ClassController extends Controller
         }
     }
 
+    public function getClassBySchoolName(Request $request, $id)
+    {
+        $user = User::find($id);
+        $class = $this->class->where('schoolName', $user->schoolName)->get()->load(['student']);
+
+        try {
+            return response()->json([
+                'success'=>true,
+                'count'=>count($class),
+                'data'=> $class,
+                
+            ], 200);
+        } catch (Exception $err) {
+                return response()->json([
+                'success'=>false,
+                'errors'=>$err->getMessage()
+            ], 500);
+        }
+    }
+
+
   
     public function create(Request $request)
     {
@@ -45,6 +67,7 @@ class ClassController extends Controller
         $validator = Validator::make($request->all(),
         [
             'name' => 'required|string',
+            'schoolName' => 'required|string',
         ]);
 
         if($validator->fails())
@@ -59,6 +82,7 @@ class ClassController extends Controller
 
             $this->class->name = $request->name;
             $this->class->description = $request->description;
+            $this->class->schoolName = $request->schoolName;
             $this->class->save();
 
             $class = $this->class->refresh();

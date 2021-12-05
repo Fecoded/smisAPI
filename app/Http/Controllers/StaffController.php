@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use App\Models\Staff;
 use App\Models\Classes;
 use App\Models\ClassesStaff;
@@ -27,11 +27,27 @@ class StaffController extends Controller
 
     public function index(Request $request)
     {
-        $user_token = $request->token;
-        $user = auth('users')->authenticate($user_token);
-        $user_id = $user->id;
-        
-        $staff = $this->staff->get()->load(['staffnextofkin'])->toArray();
+        $staff = $this->staff->get()->load(['staffnextofkin']);
+        try {
+            return response()->json([
+                'success'=>true,
+                'count'=>count($staff),
+                'data'=> $staff,
+                
+            ], 200);
+        } catch (Exception $err) {
+                return response()->json([
+                'success'=>false,
+                'errors'=>$err->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getStaffBySchoolName(Request $request, $id)
+    {
+        $user = User::find($id);
+        $staff = $this->staff->where('schoolName', $user->schoolName)->get()->load(['staffnextofkin']);
+
         try {
             return response()->json([
                 'success'=>true,
@@ -65,6 +81,7 @@ class StaffController extends Controller
             'stateOfOrigin' => 'required',
             'dateOfEmployment' => 'required',
             'dateOfRegistration' => 'required',
+            'schoolName' => 'required'
         ]);
 
         if($validator->fails())
@@ -89,6 +106,7 @@ class StaffController extends Controller
             $this->staff->stateOfOrigin = $request->stateOfOrigin;
             $this->staff->dateOfEmployment = $request->dateOfEmployment;
             $this->staff->dateOfRegistration = $request->dateOfRegistration;
+            $this->staff->schoolName = $request->schoolName;
             $this->staff->save();
 
             $staff = $this->staff->refresh();

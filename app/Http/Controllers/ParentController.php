@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use App\Models\Parents;
 use Illuminate\Http\Request;
 
@@ -22,11 +23,28 @@ class ParentController extends Controller
 
     public function index(Request $request)
     {
-        $user_token = $request->token;
-        $user = auth('users')->authenticate($user_token);
-        $user_id = $user->id;
         
-        $parent = Parents::get()->load(['student'])->toArray();
+        $parent = $this->parent->get()->load(['student']);
+
+        try {
+            return response()->json([
+                'success'=>true,
+                'count'=>count($parent),
+                'data'=> $parent,
+                
+            ], 200);
+        } catch (Exception $err) {
+                return response()->json([
+                'success'=>false,
+                'errors'=>$err->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getParentsBySchoolName(Request $request, $id)
+    {
+        $user = User::find($id);
+        $parent = $this->parent->where('schoolName', $user->schoolName)->get()->load(['student']);
 
         try {
             return response()->json([
@@ -56,6 +74,7 @@ class ParentController extends Controller
             'phoneNumber1' => 'required|string',
             'houseAddress' => 'required|string',
             'workAddress' => 'required|string',
+            'schoolName' => 'required|string'
         ]);
 
         if($validator->fails())
@@ -77,6 +96,7 @@ class ParentController extends Controller
             $this->parent->phoneNumber2 = $request->phoneNumber2;
             $this->parent->houseAddress = $request->houseAddress;
             $this->parent->workAddress = $request->workAddress;
+            $this->parent->schoolName = $request->schoolName;
             $this->parent->save();
 
             $parent = $this->parent->refresh();

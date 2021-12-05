@@ -13,7 +13,8 @@ class Classes extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'schoolName'
     ];
 
      /**
@@ -24,12 +25,14 @@ class Classes extends Model
     {
         return $this->hasMany(Student::class, 'classId');
     }
+
      /**
      * Get the Class that has many Teachers.
      */
     
     public function staff()
     {
-        return $this->belongsToMany(Staff::class, 'classes_staff', 'classId', 'staffId');
+        return $this->belongsToMany(Staff::class, 'classes_staff', 'staffId', 'classId');
     }
+
 }

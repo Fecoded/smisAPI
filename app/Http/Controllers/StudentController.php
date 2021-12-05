@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -22,11 +23,28 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
-        $user_token = $request->token;
-        $user = auth('users')->authenticate($user_token);
-        $user_id = $user->id;
         
-        $student = Student::get()->load(['classes','parent'])->toArray();
+        $student = $this->student->get()->load(['classes','parent']);
+
+        try {
+            return response()->json([
+                'success'=>true,
+                'count'=>count($student),
+                'data'=> $student,
+                
+            ], 200);
+        } catch (Exception $err) {
+                return response()->json([
+                'success'=>false,
+                'errors'=>$err->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getStudentsBySchoolName(Request $request, $id)
+    {
+        $user = User::find($id);
+        $student = $this->student->where('schoolName', $user->schoolName)->get()->load(['classes','parent']);
 
         try {
             return response()->json([
@@ -62,6 +80,7 @@ class StudentController extends Controller
             'dateOfRegistration' => 'required|string',
             'parentId' => 'required|string',
             'classId' => 'required|string',
+            'schoolName' => 'required|string',
         ]);
 
         if($validator->fails())
@@ -88,6 +107,7 @@ class StudentController extends Controller
             $this->student->dateOfRegistration = $request->dateOfRegistration;
             $this->student->parentId = $request->parentId;
             $this->student->classId = $request->classId;
+            $this->student->schoolName = $request->schoolName;
             $this->student->save();
 
             $student = $this->student->refresh();
