@@ -138,23 +138,13 @@ class StudentController extends Controller
             ], 400);
         }
 
-         return response()->json([
-            'success'=> true,
-            'data'=> $student
-        ], 200);
+         return $student;
     }
 
  
     public function update(Request $request, $id)
     {
-       $student = $this->student->find($id);
-
-        if(is_null($student)){
-            return response()->json([
-                'success'=>false,
-                'errors'=> "Student doesn't exist"
-            ], 400);
-        }
+       $student = $this->getById($id);
 
         try {
             $student->update($request->all());
@@ -175,14 +165,8 @@ class StudentController extends Controller
 
     public function delete($id)
     {
-        $student = $this->student->find($id);
+        $student = $this->getById($id);
 
-        if(is_null($student)){
-            return response()->json([
-                'success'=> false,
-                'errors'=> "Student doesn't exist"
-            ], 400);
-        }
 
         $student->delete();
 
@@ -194,14 +178,7 @@ class StudentController extends Controller
 
     public function promote(Request $request, $id)
     {
-        $student = $this->student->find($id);
-
-        if(is_null($student)){
-            return response()->json([
-                'success'=>false,
-                'errors'=> "Student doesn't exist"
-            ], 400);
-        }
+        $student = $this->getById($id);
 
          try {
             $student->classId = $request->classId;

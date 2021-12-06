@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             // 'password' => Hash::make('password'),
             'password' => '$2a$10$B679aX.2Ba6LzWlZtMh5V.s1VDtkYssmy2imisfwaNXJX0GMgpWkm',
             'role' => 'super_admin',
-            'schoolName' => '',
+            'schoolName' => 'None',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
           ), array(

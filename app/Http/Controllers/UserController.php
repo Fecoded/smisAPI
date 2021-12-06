@@ -16,13 +16,13 @@ class UserController extends Controller
    
     public function __construct()
     {
+        // Middleware to Protect a Route
+        $this->middleware('auth', ['except' => ['login', 'register']]);
         $this->user = new User;
     }
 
     public function register(Request $request)
     {
-
-
         $validator = Validator::make($request->all(),
         [
             'name' => 'required|string',
