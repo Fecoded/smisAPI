@@ -13,6 +13,7 @@ class Session extends Model
 
     protected $fillable = [
         'name',
+        'schoolName',
         'from',
         'to'
     ];

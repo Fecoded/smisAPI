@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Models\Session;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -64,6 +65,7 @@ class SessionController extends Controller
             $this->session->name = $request->name;
             $this->session->from = $request->from;
             $this->session->to = $request->to;
+            $this->session->schoolName = $request->schoolName;
             $this->session->save();
 
             $session = $this->session->refresh();
@@ -94,6 +96,25 @@ class SessionController extends Controller
         }
 
          return $session;
+    }
+
+    public function getSessionBySchoolName(Request $request, $id)
+    {
+        $user = User::find($id);
+        $session = $this->session->where('schoolName', $user->schoolName)->get();
+
+        try {
+            return response()->json([
+                'success'=>true,
+                'count'=>count($session),
+                'data'=> $session,
+            ], 200);
+        } catch (Exception $err) {
+                return response()->json([
+                'success'=>false,
+                'errors'=>$err->getMessage()
+            ], 500);
+        }
     }
 
     public function update(Request $request, $id)

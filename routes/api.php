@@ -66,7 +66,7 @@ Route::delete('/parent/{id}', [ParentController::class, 'delete']);
 
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session', [SessionController::class, 'create']);
-Route::get('/session/{id}', [SessionController::class, 'getById']);
+Route::get('/session/{id}', [SessionController::class, 'getSessionBySchoolName']);
 Route::put('/session/{id}', [SessionController::class, 'update']);
 Route::delete('/session/{id}', [SessionController::class, 'delete']);
 

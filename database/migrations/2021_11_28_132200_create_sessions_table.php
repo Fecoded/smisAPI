@@ -18,6 +18,7 @@ class CreateSessionsTable extends Migration
             $table->string('name');
             $table->string('from');
             $table->string('to');
+            $table->string('schoolName');
             $table->timestamps();
         });
     }

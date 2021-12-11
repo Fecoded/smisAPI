@@ -74,7 +74,8 @@ class ParentController extends Controller
             'phoneNumber1' => 'required|string',
             'houseAddress' => 'required|string',
             'workAddress' => 'required|string',
-            'schoolName' => 'required|string'
+            'schoolName' => 'required|string',
+            'sessionId' => 'required'
         ]);
 
         if($validator->fails())
@@ -97,6 +98,7 @@ class ParentController extends Controller
             $this->parent->houseAddress = $request->houseAddress;
             $this->parent->workAddress = $request->workAddress;
             $this->parent->schoolName = $request->schoolName;
+            $this->parent->sessionId = $request->sessionId;
             $this->parent->save();
 
             $parent = $this->parent->refresh();
