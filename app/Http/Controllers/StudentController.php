@@ -80,6 +80,7 @@ class StudentController extends Controller
             'dateOfRegistration' => 'required|string',
             'parentId' => 'required|string',
             'classId' => 'required|string',
+            'sessionId' => 'required|string',
             'schoolName' => 'required|string',
         ]);
 
@@ -107,6 +108,7 @@ class StudentController extends Controller
             $this->student->dateOfRegistration = $request->dateOfRegistration;
             $this->student->parentId = $request->parentId;
             $this->student->classId = $request->classId;
+            $this->student->sessionId = $request->sessionId;
             $this->student->schoolName = $request->schoolName;
             $this->student->save();
 

@@ -42,7 +42,7 @@ class ClassController extends Controller
     public function getClassBySchoolName(Request $request, $id)
     {
         $user = User::find($id);
-        $class = $this->class->where('schoolName', $user->schoolName)->get()->load(['student']);
+        $class = $this->class->where('schoolName', $user->schoolName)->orderBy('created_at', 'DESC')->get()->load(['student']);
 
         try {
             return response()->json([
@@ -79,6 +79,15 @@ class ClassController extends Controller
         }
 
         try {
+
+            $class = $this->class->find($request->name);
+
+            if(!is_null($class)){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Class name already exist'
+                ]);
+            }
 
             $this->class->name = $request->name;
             $this->class->description = $request->description;
@@ -157,7 +166,7 @@ class ClassController extends Controller
             ], 400);
         }
 
-        $book->delete();
+        $class->delete();
 
         return response()->json([
             'success'=> true,
