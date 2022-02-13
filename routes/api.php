@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteServiceProvider within a group whiparent
+parent
+parent
+parent
+parentch
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
@@ -63,6 +69,19 @@ Route::post('/parent', [ParentController::class, 'create']);
 Route::get('/parent/{id}', [ParentController::class, 'getParentsBySchoolName']);
 Route::put('/parent/{id}', [ParentController::class, 'update']);
 Route::delete('/parent/{id}', [ParentController::class, 'delete']);
+
+
+Route::get('/payment', [PaymentController::class, 'index']);
+Route::post('/payment', [PaymentController::class, 'create']);
+Route::get('/payment/{id}', [PaymentController::class, 'getPaymentsBySchoolName']);
+Route::put('/payment/{id}', [PaymentController::class, 'update']);
+Route::delete('/payment/{id}', [PaymentController::class, 'delete']);
+
+Route::get('/paymentType', [PaymentTypeController::class, 'index']);
+Route::post('/paymentType', [PaymentTypeController::class, 'create']);
+Route::get('/paymentTypeBySchoolName', [PaymentTypeController::class, 'getPaymentTypeBySchoolName']);
+Route::put('/paymentType/{id}', [PaymentTypeController::class, 'update']);
+Route::delete('/paymentType/{id}', [PaymentTypeController::class, 'delete']);
 
 Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session', [SessionController::class, 'create']);

@@ -11,7 +11,7 @@ class SessionController extends Controller
 {
     protected $session;
 
-       public function __construct()
+    public function __construct()
     {
         // Middleware to Protect a Route
         $this->middleware('auth');
@@ -26,7 +26,7 @@ class SessionController extends Controller
         $user = auth('users')->authenticate($user_token);
         $user_id = $user->id;
         
-        $session = $this->session->get()->load(['staff', 'student', 'parent'])->get();
+        $session = $this->session->get()->load(['staff', 'student', 'parent']);
 
         try {
             return response()->json([

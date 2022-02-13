@@ -46,7 +46,7 @@ class StaffController extends Controller
     public function getStaffBySchoolName(Request $request, $id)
     {
         $user = User::find($id);
-        $staff = $this->staff->where('schoolName', $user->schoolName)->get()->load(['staffnextofkin']);
+        $staff = $this->staff->where('schoolName', $user->schoolName)->get()->load(['staffnextofkin', 'classes']);
 
         try {
             return response()->json([
@@ -81,7 +81,8 @@ class StaffController extends Controller
             'stateOfOrigin' => 'required',
             'dateOfEmployment' => 'required',
             'dateOfRegistration' => 'required',
-            'schoolName' => 'required'
+            'schoolName' => 'required',
+            'sessionId' => 'required'
         ]);
 
         if($validator->fails())
@@ -107,6 +108,7 @@ class StaffController extends Controller
             $this->staff->dateOfEmployment = $request->dateOfEmployment;
             $this->staff->dateOfRegistration = $request->dateOfRegistration;
             $this->staff->schoolName = $request->schoolName;
+            $this->staff->sessionId = $request->sessionId;
             $this->staff->save();
 
             $staff = $this->staff->refresh();

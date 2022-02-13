@@ -32,4 +32,9 @@ class Session extends Model
      {
          return $this->hasMany(Staff::class, 'sessionId');
      }
+     
+     public function payment()
+     {
+         return $this->hasMany(Payment::class, 'sessionId');
+     }
 }
